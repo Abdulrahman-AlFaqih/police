@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ar.js"></script>
+    <!-- <meta http-equiv="refresh" content="1"> -->
+    <title>نموذج الجدول</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            padding: 3px 10px ;
+            box-sizing: border-box;
+        }
+        .header {
+            display: block;
+        }
+        .header img {
+            height: 80px;
+            width: 80px;
+            object-fit: contain;
+        }
+        .header h1 {
+            text-align: right;
+            font-size: 10px !important;
+            margin-top: -20px;
+        }
+        .photo-box {
+            width: 100%;
+            height: 350px;
+            border: 2px solid #858585;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            /* margin: 10px 0; */
+        }
+        .photo-box input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .photo-box img {
+            min-width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            display: none;
+            object-fit: cover;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: center;
+        }
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+            font-size: 0.9em;
+        }
+        input{
+            border: none;
+            font-weight: 600;
+        }
+        input:focus, input:active{
+            border: none;
+            outline: none;
+        }
+        .save-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1em;
+        }
+        .t-title *{
+            border: none;
+        }
+        .head *{
+            background-color: rgb(213, 255, 255);
+            color: #8f0000;
+        }
+        .head2 *{
+            background-color: rgb(255, 245, 233);
+            color: #0031b7;
+        }
+        @media (max-width: 600px) {
+            th, td {
+                font-size: 0.8em;
+                padding: 3px;
+            }
+            .header h1 {
+                font-size: 1em;
+            }
+            .photo-box {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="capture-area">
+        <div class="photo-box" onclick="document.getElementById('photo-input').click();">
+            <input type="file" id="photo-input" accept="image/*" onchange="loadPhoto(event)">
+            <img id="photo-display" alt="User Photo">
+            <p id="add-photo-text">إضافة صورة</p>
+        </div>
+        <div class="header">
+            <img src="file.png" alt="Emblem"> <br>
+            <h1>إدارة مباحث العاصمة صنعاء</h1>
+        </div>
+        <table>
+            <tr class="t-title">
+                <th >التسجيل الجنائي بمنطقة</th>
+                <td colspan="2"><input type="text" placeholder="مقر الإدارة" /></td>
+                <th>مركز شرطة</th>
+                <td colspan="1"><input type="text" placeholder="قسم التسجيل" /></td>
+                <th>التاريخ</th>
+                <td colspan="1"><input type="text" style="border: 1px solid #c9c9c9; border-radius: 15px;"/></td>
+                
+            </tr>
+            
+        </table>
+        <table>
+            <!-- Additional rows for the table data inputs go here -->
+            <tr class="head">
+                <th colspan="2">الاسم الأول</th>
+                <th>اسم الأب</th>
+                <th>إسم الجد</th>
+                <th>جد الأب</th>
+                
+            </tr>
+            <tr>
+                <td colspan="2"><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+            </tr>
+            <tr class="head">
+                <th colspan="2">اللقب</th>
+                <th>الكنية</th>
+                <th>الجنسية</th>
+                <th>تاريخ الميلاد</th>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+            </tr>
+            <tr class="head">
+                <th colspan="2">المحافظة</th>
+                <th>المديرية</th>
+                <th >الرقم الوطني</th>
+                <th>نوع الهوية</th>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+            </tr>
+            <tr class="head">
+                <th colspan="2">رقم الهوية</th>
+                <th>تاريخ الهوية</th>
+                <th>مكان إصدارها</th>
+                <th>الحالة الإجتماعية</th>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+            </tr>
+            <tr class="head">
+                <th colspan="2">المؤهل</th>
+                <th>المهنة</th>
+                <th>رقم التلفون</th>
+                <th>عنوان السكن الحالي</th>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+            </tr>
+            <tr class="head">
+                <th colspan="2">اسم العائل</th>
+                <th>اختصاص مركز</th>
+                <th>اسم الأم</th>
+                <th>وضعه حالياً</th>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+            </tr>
+            <tr class="head2">
+                <th colspan="2">نوع القضية (التهمة)</th>
+                <th>تاريخ الواقعة</th>
+                <th>مكان وقوعها</th>
+                <th>رقم القيد</th>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+            </tr>
+            <tr class="head2">
+                <th colspan="2">مركز شرطة</th>
+                <th>عدد السوابق</th>
+                <th colspan="2">الأسلوب الإجرامي</th>                
+            </tr>
+            <tr>
+                <td colspan="2"><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td colspan="2"><input type="text" /></td>
+            </tr>
+            <tr class="head2">
+                <th colspan="5">أي علامات مميزة له أومعلزمات أخرى</th>
+            </tr>
+            <tr>
+                <td colspan="5"><input type="text" /></td>
+            </tr>
+            
+            
+            <!-- More rows as needed for additional information -->
+        </table>
+        <!-- <button class="save-button" onclick="saveData()">حفظ</button> -->
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        function loadPhoto(event) {
+            const photoDisplay = document.getElementById('photo-display');
+            const addPhotoText = document.getElementById('add-photo-text');
+            photoDisplay.src = URL.createObjectURL(event.target.files[0]);
+            photoDisplay.style.display = 'block';
+            addPhotoText.style.display = 'none';
+        }
+
+        function saveData() {
+            html2canvas(document.getElementById('capture-area')).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/jpeg');
+                link.download = 'form_data.png';
+                link.click();
+            });
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr("input[type='date']", {
+                locale: "ar"
+            });
+        });
+        </script>
+</body>
+</html>
